@@ -5,6 +5,9 @@ import spacy
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from spacy.lang.en.stop_words import STOP_WORDS
 from nltk.tokenize import word_tokenize
+import warnings
+warnings.filterwarnings('ignore')
+
 
 # Load the pre-trained model and preprocessing components
 model = joblib.load('pre-trained_models/logistic_regression_model.joblib')
@@ -15,37 +18,34 @@ tfidf_t = joblib.load('pre-trained_models/tfidf_transformer_model.joblib')
 nlp = spacy.load("en_core_web_sm")
 
 
-# Define your text cleaning function
 def clean_text(text):
     if text is None:
         return ""
+    
     # Remove special characters, numbers, and punctuation
     text = re.sub(r'[^a-zA-Z\s]', '', text)
-    text = re.sub('\S*\d\S*\s*','', text)
-    text = re.sub('\[.*\]','', text)
-    text = re.sub('xxxx','', text)
-    text = re.sub('-PRON-', '', text)
+    text = re.sub(r'\S*\d\S*\s*','', text)
+    text = re.sub(r'\[.*\]','', text)
+    text = re.sub(r'xxxx','', text)
+    text = re.sub(r'-PRON-', '', text)
 
     return text
 
 def remove_stopwords(tokens):
-    # Remove common English stop words
-    # stop_words = set(stopwords.words('english'))
     filtered_tokens = [word for word in tokens if word.lower() not in STOP_WORDS]
 
     return filtered_tokens
 
 def tokenize_text(text):
-    # Tokenize the text into words
     tokens = word_tokenize(text)
 
     return tokens
 
-# Define additional preprocessing functions
+
 def preprocess_text(text):
     cleaned_text = clean_text(text)
-    tokens = tokenize_text(cleaned_text)  # Assuming you have a tokenize_text function
-    tokens_without_stopwords = remove_stopwords(tokens)  # Assuming you have a remove_stopwords function
+    tokens = tokenize_text(cleaned_text) 
+    tokens_without_stopwords = remove_stopwords(tokens) 
     preprocessed_text = ' '.join(tokens_without_stopwords)
     return preprocessed_text
 
@@ -65,32 +65,27 @@ def remove_pos_tags(text):
 def classify_text(input_text):
     if not input_text:
         return "", "", "Input text is empty. Please enter some text."
-    preprocessed_text = preprocess_text(input_text)  # Use the preprocessing steps you need
-    lemmatized_text = lemmatize(preprocessed_text)  # You can choose to include or exclude lemmatization
-    # text_without_pos_tags = remove_pos_tags(lemmatized_text)  # You can choose to include or exclude removing POS tags
+    preprocessed_text = preprocess_text(input_text)
+    lemmatized_text = lemmatize(preprocessed_text)
 
-
-    # Vectorize and transform the cleaned text
-    test = cv.transform([preprocessed_text])  # Use the processed text
+    test = cv.transform([preprocessed_text])
     test_tfidf = tfidf_t.transform(test)
 
-    # Make prediction using the loaded model
     prediction = model.predict(test_tfidf)[0]
 
-    return preprocessed_text, prediction
+    return input_text, preprocessed_text, prediction
 
-# Create a Gradio interface with an API endpoint
+
+# Create a Gradio interface without launching it
 iface = gr.Interface(
     fn=classify_text,
     inputs=gr.Textbox(placeholder="Enter text...", label="Complaint"),
     outputs=[
-        gr.Textbox(placeholder="text_without_pos_tags", label="cleaned text"),
-        gr.Textbox(placeholder="Prediction", label="Prediction")]
+        gr.Textbox(label="Orginal text"),
+        gr.Textbox(label="cleaned text"),
+        gr.Textbox(label="Prediction")]
 )
 
-# Launch the Gradio interface
-iface.launch()
-
-# I tried to make a transaction at a supermarket retail store, using my chase debit/atm card, but the transaction was declined. I am still able to withdraw money out of an ATM machine using the same debit card. Please resolve this issue.
-            #  gr.Textbox(placeholder="Translated Text", label = "Preprocessed_text"),
-
+# Launch app
+if __name__ == "__main__":
+    iface.launch(share=True)
