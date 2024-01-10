@@ -76,7 +76,6 @@ def classify_text(input_text):
     return input_text, preprocessed_text, prediction
 
 
-# Create a Gradio interface without launching it
 iface = gr.Interface(
     fn=classify_text,
     inputs=gr.Textbox(placeholder="Enter text...", label="Complaint"),
@@ -85,7 +84,6 @@ iface = gr.Interface(
         gr.Textbox(label="cleaned text"),
         gr.Textbox(label="Prediction")]
 )
-
 # Launch app
 if __name__ == "__main__":
     iface.launch(share=True)
