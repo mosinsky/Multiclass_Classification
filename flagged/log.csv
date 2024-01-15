@@ -1,3 +1,13 @@
 Complaint,Orginal text,cleaned text,Prediction,flag,username,timestamp
 "i have a problem with my bank accoutn, please help","i have a problem with my bank accoutn, please help",problem bank accoutn help,Banking and Account activities,,,2024-01-10 20:06:17.502630
 "i have a problem with my bank accoutn, please help","i have a problem with my bank accoutn, please help",problem bank accoutn help,Banking and Account activities,,,2024-01-10 20:06:25.870672
+"I tried to make a transaction at a supermarket retail store, using my chase \
+debit/atm card, but the transaction was declined. I am still able to withdraw money out of an \
+ATM machine using the same debit card. Please resolve this issue.","I tried to make a transaction at a supermarket retail store, using my chase \
+debit/atm card, but the transaction was declined. I am still able to withdraw money out of an \
+ATM machine using the same debit card. Please resolve this issue.",tried transaction supermarket retail store chase debitatm card transaction declined able withdraw money ATM machine debit card resolve issue,Credit/debits Cards,,,2024-01-13 13:03:36.458718
+"I tried to make a transaction at a supermarket retail store, using my chase \
+debit/atm card, but the transaction was declined. I am still able to withdraw money out of an \
+ATM machine using the same debit card. Please resolve this issue.","I tried to make a transaction at a supermarket retail store, using my chase \
+debit/atm card, but the transaction was declined. I am still able to withdraw money out of an \
+ATM machine using the same debit card. Please resolve this issue.",tried transaction supermarket retail store chase debitatm card transaction declined able withdraw money ATM machine debit card resolve issue,Credit/debits Cards,,,2024-01-13 13:03:56.730937

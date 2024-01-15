@@ -10,7 +10,8 @@ warnings.filterwarnings('ignore')
 
 
 # Load the pre-trained model and preprocessing components
-model = joblib.load('pre-trained_models/logistic_regression_model.joblib')
+model = joblib.load('pre-trained_models/logistic_regression_model_nfm.joblib')
+# model = joblib.load('pre-trained_models/logistic_regression_model_lda.joblib')
 cv = joblib.load('pre-trained_models/count_vectorizer_model.joblib')
 tfidf_t = joblib.load('pre-trained_models/tfidf_transformer_model.joblib') 
 
@@ -68,7 +69,8 @@ def classify_text(input_text):
     preprocessed_text = preprocess_text(input_text)
     lemmatized_text = lemmatize(preprocessed_text)
 
-    test = cv.transform([preprocessed_text])
+    test = cv.transform([input_text])
+    # test = cv.transform([preprocessed_text])
     test_tfidf = tfidf_t.transform(test)
 
     prediction = model.predict(test_tfidf)[0]
