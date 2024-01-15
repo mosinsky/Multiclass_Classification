@@ -69,8 +69,7 @@ def classify_text(input_text):
     preprocessed_text = preprocess_text(input_text)
     lemmatized_text = lemmatize(preprocessed_text)
 
-    test = cv.transform([input_text])
-    # test = cv.transform([preprocessed_text])
+    test = cv.transform([preprocessed_text])
     test_tfidf = tfidf_t.transform(test)
 
     prediction = model.predict(test_tfidf)[0]
