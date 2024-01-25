@@ -8,7 +8,6 @@ from nltk.tokenize import word_tokenize
 import warnings
 warnings.filterwarnings('ignore')
 
-
 # Load the pre-trained model and preprocessing components
 model = joblib.load('pre-trained_models/logistic_regression_model_nfm.joblib')
 # model = joblib.load('pre-trained_models/logistic_regression_model_lda.joblib')
@@ -64,17 +63,18 @@ def remove_pos_tags(text):
 
 # Combine preprocessing and classification
 def classify_text(input_text):
-    if not input_text:
-        return "", "", "Input text is empty. Please enter some text."
+    # if not input_text:
+    #     return "", "", "Input text is empty. Please enter some text."
+    input_text = input_text[0] if isinstance(input_text, list) else input_text
     preprocessed_text = preprocess_text(input_text)
     lemmatized_text = lemmatize(preprocessed_text)
 
-    test = cv.transform([preprocessed_text])
+    test = cv.transform([lemmatized_text])
     test_tfidf = tfidf_t.transform(test)
 
     prediction = model.predict(test_tfidf)[0]
 
-    return input_text, preprocessed_text, prediction
+    return input_text, lemmatized_text, prediction
 
 
 iface = gr.Interface(
@@ -85,6 +85,8 @@ iface = gr.Interface(
         gr.Textbox(label="cleaned text"),
         gr.Textbox(label="Prediction")]
 )
+
+
 # Launch app
 if __name__ == "__main__":
     iface.launch(share=True)
