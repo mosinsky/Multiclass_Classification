@@ -2,6 +2,7 @@ import gradio as gr
 import joblib
 import re
 import spacy
+import nltk
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from spacy.lang.en.stop_words import STOP_WORDS
 from nltk.tokenize import word_tokenize
@@ -24,10 +25,8 @@ def clean_text(text):
     
     # Remove special characters, numbers, and punctuation
     text = re.sub(r'[^a-zA-Z\s]', '', text)
-    text = re.sub(r'\S*\d\S*\s*','', text)
-    text = re.sub(r'\[.*\]','', text)
-    text = re.sub(r'xxxx','', text)
-    text = re.sub(r'-PRON-', '', text)
+    text = re.sub('\S*\d\S*\s*','', text)
+    text = re.sub('\[.*\]','', text)
 
     return text
 
@@ -76,9 +75,9 @@ def classify_text(input_text):
 
     return input_text, lemmatized_text, prediction
 
-title = "Awesome ML App"
-desc = "This is an awesome ML App.  I'm really excited to show you"
-long_desc = "Let me tell you ALL about this awesome ML App"
+title = "Klasyfikacja tekstu"
+desc = 'Zastosowanie technik uczenia maszynowego do klasyfikacji tekstu'
+long_desc = "Michał Mosnski 2023-2024"
 
 iface = gr.Interface(
     fn=classify_text,
@@ -88,9 +87,9 @@ iface = gr.Interface(
         gr.Textbox(label="cleaned text"),
         gr.Textbox(label="Prediction")],
         title=title, 
-        description=desc,
+        description = desc,
         article=long_desc,
-        theme=gr.themes.Base()
+        theme=gr.themes.Soft()
 
 )
 
