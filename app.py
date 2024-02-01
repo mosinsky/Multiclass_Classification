@@ -76,6 +76,9 @@ def classify_text(input_text):
 
     return input_text, lemmatized_text, prediction
 
+title = "Awesome ML App"
+desc = "This is an awesome ML App.  I'm really excited to show you"
+long_desc = "Let me tell you ALL about this awesome ML App"
 
 iface = gr.Interface(
     fn=classify_text,
@@ -83,7 +86,12 @@ iface = gr.Interface(
     outputs=[
         gr.Textbox(label="Orginal text"),
         gr.Textbox(label="cleaned text"),
-        gr.Textbox(label="Prediction")]
+        gr.Textbox(label="Prediction")],
+        title=title, 
+        description=desc,
+        article=long_desc,
+        theme=gr.themes.Base()
+
 )
 
 
