@@ -10,10 +10,9 @@ import warnings
 warnings.filterwarnings('ignore')
 
 # Load the pre-trained model and preprocessing components
-model = joblib.load('pre-trained_models/logistic_regression_model_nfm.joblib')
-# model = joblib.load('pre-trained_models/logistic_regression_model_lda.joblib')
-cv = joblib.load('pre-trained_models/count_vectorizer_model.joblib')
-tfidf_t = joblib.load('pre-trained_models/tfidf_transformer_model.joblib') 
+model = joblib.load('pre-trained_models/logistic_regression.joblib')
+cv = joblib.load('pre-trained_models/cv.joblib')
+tfidf_t = joblib.load('pre-trained_models/tfidf.joblib') 
 
 # Load spaCy for lemmatization
 nlp = spacy.load("en_core_web_sm")
@@ -89,7 +88,7 @@ iface = gr.Interface(
         title=title, 
         description = desc,
         article=long_desc,
-        theme=gr.themes.Soft()
+        # theme=gr.themes.Soft()
 
 )
 
