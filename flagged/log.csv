@@ -1,16 +1,1 @@
-Complaint,Orginal text,cleaned text,Prediction,flag,username,timestamp
-"i have a problem with my bank accoutn, please help","i have a problem with my bank accoutn, please help",problem bank accoutn help,Banking and Account activities,,,2024-01-10 20:06:17.502630
-"i have a problem with my bank accoutn, please help","i have a problem with my bank accoutn, please help",problem bank accoutn help,Banking and Account activities,,,2024-01-10 20:06:25.870672
-"I tried to make a transaction at a supermarket retail store, using my chase \
-debit/atm card, but the transaction was declined. I am still able to withdraw money out of an \
-ATM machine using the same debit card. Please resolve this issue.","I tried to make a transaction at a supermarket retail store, using my chase \
-debit/atm card, but the transaction was declined. I am still able to withdraw money out of an \
-ATM machine using the same debit card. Please resolve this issue.",tried transaction supermarket retail store chase debitatm card transaction declined able withdraw money ATM machine debit card resolve issue,Credit/debits Cards,,,2024-01-13 13:03:36.458718
-"I tried to make a transaction at a supermarket retail store, using my chase \
-debit/atm card, but the transaction was declined. I am still able to withdraw money out of an \
-ATM machine using the same debit card. Please resolve this issue.","I tried to make a transaction at a supermarket retail store, using my chase \
-debit/atm card, but the transaction was declined. I am still able to withdraw money out of an \
-ATM machine using the same debit card. Please resolve this issue.",tried transaction supermarket retail store chase debitatm card transaction declined able withdraw money ATM machine debit card resolve issue,Credit/debits Cards,,,2024-01-13 13:03:56.730937
-"Hi, I tried to make a payment in my local shop with my credit card, but its says declined","Hi, I tried to make a payment in my local shop with my credit card, but its says declined",Hi tried payment local shop credit card says declined,Credit/debits Cards,,,2024-01-19 11:23:46.556172
-"hi, i have a problem with paying with my credit card in local shop, my transaction keep getting dersclined, could you help me?","hi, i have a problem with paying with my credit card in local shop, my transaction keep getting dersclined, could you help me?",hi problem pay credit card local shop transaction get dersclined help,Credit/debits Cards,,,2024-01-26 19:43:30.380444
-"Hi my name is Michal, I have a problem with my bank account, I triend to change my password many times but I keep have some error",,,,,,2024-01-31 22:14:28.984273
+"I have a problem, I can't pay with my credit card in the shop. I havee status declinede","I have a problem, I can't pay with my credit card in the shop. I have status declined",problem not pay credit card shop status decline,Credit/debits Cards,,,2024-02-04 00:01:18.131241
