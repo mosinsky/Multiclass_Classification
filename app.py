@@ -3,11 +3,14 @@ import joblib
 import re
 import spacy
 import nltk
+# nltk.download()
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from spacy.lang.en.stop_words import STOP_WORDS
 from nltk.tokenize import word_tokenize
 import warnings
 warnings.filterwarnings('ignore')
+from autocorrect import Speller
+spell = Speller(lang='en')
 
 # Load the pre-trained model and preprocessing components
 model = joblib.load('pre-trained_models/logistic_regression.joblib')
@@ -17,6 +20,10 @@ tfidf_t = joblib.load('pre-trained_models/tfidf.joblib')
 # Load spaCy for lemmatization
 nlp = spacy.load("en_core_web_sm")
 
+def correct_text(text):
+    text = spell(text)
+
+    return text
 
 def clean_text(text):
     if text is None:
@@ -64,6 +71,7 @@ def classify_text(input_text):
     # if not input_text:
     #     return "", "", "Input text is empty. Please enter some text."
     input_text = input_text[0] if isinstance(input_text, list) else input_text
+    input_text = correct_text(input_text)
     preprocessed_text = preprocess_text(input_text)
     lemmatized_text = lemmatize(preprocessed_text)
 
