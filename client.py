@@ -1,4 +1,3 @@
-#
 from gradio_client import Client
 
 input = input("Complaint Text: ")
@@ -8,3 +7,6 @@ result = client.predict(
 		api_name="/predict"
 )
 print(result)
+
+
+
