@@ -58,7 +58,7 @@ def lemmatize(text):
 
     return ' '.join(sent)
 
-def remove_pos_tags(text):
+def extract_nouns(text):
     doc = nlp(text)
     sent = [token.text for token in doc if token.tag_ == 'NN']
 
@@ -73,13 +73,14 @@ def classify_text(input_text):
     input_text = correct_text(input_text)
     preprocessed_text = preprocess_text(input_text)
     lemmatized_text = lemmatize(preprocessed_text)
+    Nouns = extract_nouns(lemmatized_text)
 
-    test = cv.transform([lemmatized_text])
+    test = cv.transform([Nouns])
     test_tfidf = tfidf_t.transform(test)
 
     prediction = model.predict(test_tfidf)[0]
 
-    return input_text, lemmatized_text, prediction
+    return input_text, Nouns, prediction
 
 title = "Klasyfikacja tekstu"
 desc = 'Zastosowanie technik uczenia maszynowego do klasyfikacji tekstu'
@@ -95,7 +96,6 @@ iface = gr.Interface(
         title=title, 
         description = desc,
         article=long_desc,
-        # theme=gr.themes.Soft()
 
 )
 
